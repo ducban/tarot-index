@@ -1,4 +1,4 @@
-# AGENTS.md — Dalí Tarot Guide
+# AGENTS.md — B3's Tarot Index
 
 > This file is written for AI coding agents. It describes the actual state of the project as found in the working tree. Do not assume anything that is not documented here.
 
@@ -6,7 +6,7 @@
 
 ## Project Overview
 
-**Dalí Tarot Guide** is a static, single-page web application that lets users look up meanings for all 78 Tarot cards. The interface and content are in Vietnamese. The app is styled with a dark, gold-accented theme inspired by the Dalí Tarot deck from TASCHEN.
+**B3's Tarot Index** is a static, single-page web application that lets users look up meanings for all 78 Tarot cards. The interface and content are in Vietnamese. The app is styled with a dark, gold-accented theme inspired by the Dalí Tarot deck from TASCHEN.
 
 - **Primary language of content:** Vietnamese (`vi`)
 - **Primary language of code comments:** English
