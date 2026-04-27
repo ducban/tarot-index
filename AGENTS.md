@@ -95,6 +95,15 @@ Then navigate to `http://localhost:8000/index.html`.
 
 ---
 
+## Content & Language Guidelines
+
+- **Content language:** Vietnamese (`vi`). Headings and terminology stay in English.
+- **Writing style:** Use layman's terms — simple, accessible language as seen in existing card descriptions.
+- **Agent responses:** Always respond in Vietnamese. Confirm understanding of the task, wait for user approval before implementing.
+- **Documentation reference:** Always use Context7 for development documentation.
+
+---
+
 ## Code Style Guidelines
 
 - **Single-file architecture.** All new features, styles, and data must be added to `index.html` unless there is a strong reason to split files.
@@ -141,3 +150,4 @@ There is no automated test suite. Manual testing checklist:
 - The `love`, `career`, and `spirituality` fields currently show the same text for both upright and reversed orientations. The modal code reads `card.love`, `card.career`, and `card.spirituality` regardless of `currentOrientation`. If separate reversed interpretations are needed, the data schema and `buildMeaningsHTML` will require updates.
 - Card data is inlined as a large JavaScript array, making the HTML file ~123 KB. This is intentional for offline-first behavior but means any content edit requires modifying the single source file.
 - There are no image assets; card faces are rendered purely with CSS and emoji icons.
+- **Suit descriptions:** When a category filter is selected (e.g. Wands), a description block is shown above the card grid in the format: `Title (Vietnamese name) \n\n X lá bài \n\n <explanation in Vietnamese>`. The description data lives in the `suitDescriptions` object inside `<script>`.
