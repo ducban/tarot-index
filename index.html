@@ -222,7 +222,7 @@ header{text-align:center;padding:2rem 1rem 1.5rem;background:linear-gradient(180
 
 /* ========== CARD FLIP ANIMATION ========== */
 .tarot-card-wrapper{perspective:800px;cursor:pointer}
-.tarot-card-inner{position:relative;width:100%;transition:transform 0.6s cubic-bezier(0.4,0,0.2,1);transform-style:preserve-3d}
+.tarot-card-inner{position:relative;width:100%;transition:transform 0.35s cubic-bezier(0.4,0,0.2,1);transform-style:preserve-3d}
 .tarot-card-wrapper.flipped .tarot-card-inner{transform:rotateY(180deg)}
 .tarot-card,.tarot-card-back{backface-visibility:hidden}
 .tarot-card-back{position:absolute;inset:0;background:linear-gradient(145deg,#2d1b4e,#1a0a2e);border:2px solid #b8860b;border-radius:12px;transform:rotateY(180deg);display:flex;align-items:center;justify-content:center;overflow:hidden}
@@ -453,23 +453,32 @@ function renderAll() {
 
   cardContainer.innerHTML = html;
 
-  // Add click handlers — first click flips, second click opens modal
+  // Add click handlers — flip animation then open modal
   document.querySelectorAll('.tarot-card-wrapper').forEach(el => {
-    let clickTimer = null;
     el.addEventListener('click', () => {
-      if (!el.classList.contains('flipped')) {
-        el.classList.add('flipped');
-      } else {
+      if (el.classList.contains('animating')) return;
+      el.classList.add('animating');
+      el.classList.add('flipped');
+      setTimeout(() => {
         const card = cards.find(c => c.id === el.dataset.id);
-        if (card) openModal(card);
-      }
+        if (card) {
+          openModal(card, () => {
+            // Callback when modal closes — flip back
+            el.classList.remove('flipped');
+            setTimeout(() => el.classList.remove('animating'), 400);
+          });
+        }
+      }, 350);
     });
   });
 }
 
 // ========== MODAL ==========
-function openModal(card) {
+let modalFlipCallback = null;
+
+function openModal(card, onFlipBack) {
   currentOrientation = 'upright';
+  modalFlipCallback = onFlipBack || null;
   modalBody.innerHTML = buildModalHTML(card);
   modalOverlay.classList.add('active');
   document.body.style.overflow = 'hidden';
@@ -594,6 +603,10 @@ function buildMeaningsHTML(card, orientation) {
 function closeModal() {
   modalOverlay.classList.remove('active');
   document.body.style.overflow = '';
+  if (modalFlipCallback) {
+    modalFlipCallback();
+    modalFlipCallback = null;
+  }
 }
 
 // ========== COMBO ==========
