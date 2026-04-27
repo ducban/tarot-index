@@ -63,13 +63,23 @@ The app runs entirely in the browser:
     keywords: string,
     upright: string,        // General upright meaning (Vietnamese)
     reversed: string,       // General reversed meaning (Vietnamese)
-    love: string,
-    career: string,
-    spirituality: string
+    love: string,           // Upright love meaning
+    loveReversed: string,   // Reversed love meaning
+    career: string,         // Upright career meaning
+    careerReversed: string, // Reversed career meaning
+    spirituality: string,   // Upright spirituality meaning
+    spiritualityReversed: string, // Reversed spirituality meaning
+    yesNo: { upright: "yes"|"no"|"maybe", reversed: "yes"|"no"|"maybe" },
+    zodiac: string,         // e.g. "Aries ♈" or "" for cards without zodiac
+    planet: string,         // e.g. "Mars" or ""
+    element: string         // "Fire"|"Water"|"Air"|"Earth"
   }
   ```
 - **Rendering** is imperative: `renderAll()` filters the data, groups it by suit/arcana, builds HTML strings, and injects them into `cardContainer.innerHTML`.
-- **Modal** shows detailed meanings. An orientation toggle switches between upright and reversed interpretations. Love, career, and spirituality sections do not yet have separate reversed text (the code references the same property regardless of orientation).
+- **Cards** use a CSS 3D flip animation — first click flips the card, second click opens the detail modal.
+- **Modal** shows detailed meanings with an orientation toggle (upright/reversed). All three sub-sections (love, career, spirituality) now have separate reversed text. Includes Yes/No badge, collapsible astrology section, and a combo button.
+- **Combo (Card Combinations)** — From the detail modal, users can click "Kết Hợp" to select a second card and see a generated combination meaning.
+- **Intro Modal** — A ❓ button in the header opens a guide explaining Tarot basics and how to use the app.
 - **Service Worker** is created dynamically from an inline string and registered as a Blob URL. It implements a simple cache-first fetch strategy.
 
 ---
@@ -148,6 +158,10 @@ There is no automated test suite. Manual testing checklist:
 ## Known Limitations / Notes for Agents
 
 - The `love`, `career`, and `spirituality` fields currently show the same text for both upright and reversed orientations. The modal code reads `card.love`, `card.career`, and `card.spirituality` regardless of `currentOrientation`. If separate reversed interpretations are needed, the data schema and `buildMeaningsHTML` will require updates.
-- Card data is inlined as a large JavaScript array, making the HTML file ~123 KB. This is intentional for offline-first behavior but means any content edit requires modifying the single source file.
+- Card data is inlined as a large JavaScript array, making the HTML file ~192 KB. This is intentional for offline-first behavior but means any content edit requires modifying the single source file.
 - There are no image assets; card faces are rendered purely with CSS and emoji icons.
 - **Suit descriptions:** When a category filter is selected (e.g. Wands), a description block is shown above the card grid in the format: `Title (Vietnamese name) \n\n X lá bài \n\n <explanation in Vietnamese>`. The description data lives in the `suitDescriptions` object inside `<script>`.
+- **Card flip:** Cards in the grid use CSS 3D flip (first click = flip to reveal back pattern, second click = open modal). Implementation uses `.tarot-card-wrapper` with `.tarot-card-inner` for perspective transform.
+- **Yes/No/Maybe:** Each card has a `yesNo` object with upright and reversed values. Displayed as a colored badge in the modal.
+- **Astrology:** Each card has `zodiac`, `planet`, `element` fields. Shown in a collapsible section within the modal (click "🔮 Tương ứng Chiêm học" to expand).
+- **Card Combinations:** Users can select a second card from the detail modal via the "🔗 Xem Kết Hợp" button. The combination meaning is generated algorithmically based on card properties (element, suit, arcana, keywords).
