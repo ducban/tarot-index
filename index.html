@@ -76,6 +76,8 @@ header{text-align:center;padding:2rem 1rem 1.5rem;background:linear-gradient(180
 .search-bar-sticky .search-section{padding:0}
 .search-bar-sticky .filter-section-desktop{display:none}
 .search-bar-sticky .filter-toggle-btn{display:flex}
+@media(min-width:769px){.search-bar-sticky .filter-section-desktop{display:flex;padding:0.5rem 0 0;background:none;border:none;flex-wrap:wrap;justify-content:center;gap:0.5rem}
+.search-bar-sticky .filter-toggle-btn{display:none}}
 .search-wrapper{position:relative;max-width:600px;margin:0 auto;display:flex;gap:0.5rem;align-items:center}
 .search-input-wrap{position:relative;flex:1}
 
@@ -91,7 +93,7 @@ header{text-align:center;padding:2rem 1rem 1.5rem;background:linear-gradient(180
 /* ========== FILTER TABS ========== */
 .filter-section{display:flex;flex-wrap:wrap;justify-content:center;gap:0.5rem;padding:0.5rem 0 1.5rem}
 .filter-section-desktop{display:flex;flex-wrap:wrap;justify-content:center;gap:0.5rem;padding:0.5rem 0 1.5rem}
-.filter-toggle-btn{display:none;align-items:center;justify-content:center;width:42px;height:42px;border:1.5px solid #8b6914;border-radius:8px;color:#c9a227;font-size:1.1rem;background:rgba(26,10,46,0.8);cursor:pointer;transition:all 0.3s;flex-shrink:0}
+.filter-toggle-btn{display:none;align-items:center;justify-content:center;width:44px;height:44px;border:2px solid #8b6914;border-radius:8px;color:#c9a227;font-size:1.1rem;background:rgba(26,10,46,0.8);cursor:pointer;transition:all 0.3s;flex-shrink:0}
 .filter-toggle-btn:hover{border-color:#c9a227;background:rgba(201,162,39,0.1)}
 .filter-active-label{font-size:0.7rem;color:#8b7355;text-align:center;max-width:42px;line-height:1.2;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .filter-modal-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:0.75rem;padding:1rem 0}
@@ -144,8 +146,8 @@ header{text-align:center;padding:2rem 1rem 1.5rem;background:linear-gradient(180
 /* ========== CARD DETAIL MODAL ========== */
 .modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,0.85);backdrop-filter:blur(8px);z-index:1000;display:flex;align-items:center;justify-content:center;padding:1rem;opacity:0;pointer-events:none;transition:opacity 0.3s}
 .modal-overlay.active{opacity:1;pointer-events:all}
-.modal-content{background:linear-gradient(180deg,#2d1b4e,#1a0a2e);border:2px solid #c9a227;border-radius:16px;max-width:700px;width:100%;max-height:90vh;overflow-y:auto;position:relative;box-shadow:0 20px 60px rgba(0,0,0,0.6),0 0 30px rgba(201,162,39,0.15)}
-.modal-content::before{content:'';position:absolute;inset:6px;border:1px solid rgba(201,162,39,0.2);border-radius:12px;pointer-events:none}
+.modal-content{background:linear-gradient(180deg,#2d1b4e,#1a0a2e);border:2px solid #c9a227;border-radius:16px;max-width:700px;width:100%;max-height:90vh;overflow-y:auto;position:relative;box-shadow:0 20px 60px rgba(0,0,0,0.6),0 0 30px rgba(201,162,39,0.15),inset 0 0 0 6px #1a0a2e,inset 0 0 0 7px rgba(201,162,39,0.2)}
+.modal-content::before{display:none}
 .modal-close{position:absolute;top:1rem;right:1rem;font-size:1.5rem;color:#c9a227;cursor:pointer;z-index:10;width:36px;height:36px;display:flex;align-items:center;justify-content:center;border-radius:50%;transition:all 0.3s}
 .modal-close:hover{background:rgba(201,162,39,0.15);transform:rotate(90deg)}
 
