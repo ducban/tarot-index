@@ -130,8 +130,8 @@ There is no automated test suite. Manual testing checklist:
 
 ## Deployment Considerations
 
-- The canonical URL placeholder in the `<link rel="canonical">` tag and in breadcrumb structured data is `https://your-domain.com/tarot.html`. Update this before deploying to production.
-- The inline Web App Manifest contains a placeholder `start_url` of `./tarot.html`. Align this with the actual deployed filename (`index.html` or `tarot.html`).
+- The canonical URL is `https://tarrot.hiem.co/`. The OG image, Twitter Card, and breadcrumb structured data all reference this domain.
+- The inline Web App Manifest has `start_url` set to `./` (root).
 - No environment variables or secret keys are present.
 - Because the app is a single static file, it can be deployed to any static host (GitHub Pages, Netlify, Vercel, Cloudflare Pages, S3, etc.).
 
