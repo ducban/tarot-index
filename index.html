@@ -64,8 +64,11 @@ img{max-width:100%;display:block}
 header{text-align:center;padding:2rem 1rem 1.5rem;background:linear-gradient(180deg,#1a0a2e 0%,#0f0518 100%);border-bottom:2px solid #c9a227;position:relative;z-index:100}
 .header-inner{display:flex;flex-direction:column;align-items:center;gap:0.5rem}
 .header-row{display:flex;align-items:center;gap:0.75rem}
+/* ========== TOGGLE BUTTONS ========== */
 .intro-btn{font-size:1.2rem;padding:0.25rem 0.5rem;border:1.5px solid #8b6914;border-radius:50%;color:#c9a227;transition:all 0.3s;line-height:1}
 .intro-btn:hover{background:rgba(201,162,39,0.15);border-color:#c9a227}
+.pcs-toggle-btn{font-size:1.2rem;padding:0.25rem 0.5rem;border:1.5px solid #8b6914;border-radius:8px;color:#c9a227;transition:all 0.3s;line-height:1}
+.pcs-toggle-btn:hover{background:rgba(201,162,39,0.15);border-color:#c9a227}
 .header-title{font-size:clamp(1.5rem,5vw,2.5rem);color:#c9a227;text-transform:uppercase;letter-spacing:3px;text-shadow:0 2px 10px rgba(201,162,39,0.3)}
 @media(max-width:480px){.header-title{font-size:1.2rem;letter-spacing:1px}}
 .header-sub{font-size:0.9rem;color:#a88d5e;font-style:italic;letter-spacing:1px}
@@ -192,6 +195,37 @@ header{text-align:center;padding:2rem 1rem 1.5rem;background:linear-gradient(180
 .header-title{background:linear-gradient(90deg,#c9a227,#f4e4c1,#c9a227);background-size:200% auto;-webkit-background-clip:text;-webkit-text-fill-color:transparent;animation:shimmer 4s linear infinite}
 
 /* ========== PRINT ========== */
+/* ========== RWS HELPER MODE ========== */
+.rws-view.hidden{display:none}
+.rws-view{animation:fadeIn 0.4s ease both}
+#indexView.rws-active{display:none}
+
+.rws-header{background:linear-gradient(180deg,#1a0a2e 0%,#0f0518 100%);border-bottom:2px solid #9b59b6;padding:1.25rem 1rem;text-align:center}
+.rws-header-inner{display:flex;align-items:center;justify-content:space-between;max-width:1200px;margin:0 auto}
+.rws-back-btn{padding:0.4rem 1rem;border:1.5px solid #8b6914;border-radius:8px;color:#c9a227;font-size:0.85rem;transition:all 0.3s}
+.rws-back-btn:hover{background:rgba(201,162,39,0.15);border-color:#c9a227}
+.rws-header-center{flex:1}
+.rws-title{font-size:clamp(1.1rem,4vw,1.6rem);color:#9b59b6;text-transform:uppercase;letter-spacing:2px;margin:0}
+.rws-sub{font-size:0.85rem;color:#7d5ba6;font-style:italic;letter-spacing:1px;margin-top:0.25rem}
+
+.rws-search-section{padding:1rem;max-width:1200px;margin:0 auto}
+.rws-tags{display:flex;flex-wrap:wrap;gap:0.4rem;margin-top:0.75rem;justify-content:center}
+.rws-tag{padding:0.35rem 0.7rem;font-size:0.78rem;border:1px solid rgba(155,89,182,0.4);border-radius:20px;color:#9b59b6;background:transparent;transition:all 0.2s;white-space:nowrap}
+.rws-tag:hover,.rws-tag.active{background:rgba(155,89,182,0.2);border-color:#9b59b6;color:#c39bd3}
+
+.rws-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:1.25rem;padding:0 1rem 2rem;max-width:1200px;margin:0 auto}
+@media(max-width:480px){.rws-grid{grid-template-columns:1fr}}
+.rws-card{background:linear-gradient(180deg,#2d1b4e,#1a0a2e);border:2px solid rgba(155,89,182,0.4);border-radius:14px;overflow:hidden;transition:all 0.3s}
+.rws-card:hover{border-color:#9b59b6;box-shadow:0 8px 25px rgba(155,89,182,0.15)}
+.rws-card-art{background:rgba(15,5,24,0.5);display:flex;align-items:center;justify-content:center;min-height:200px;padding:1.5rem}
+.rws-card-art svg{max-width:180px;max-height:180px}
+.rws-card-desc{padding:0.75rem 1rem;font-size:0.85rem;color:#c39bd3;line-height:1.6;border-bottom:1px solid rgba(155,89,182,0.2)}
+.rws-card-info{padding:0.75rem 1rem;display:flex;align-items:center;justify-content:space-between}
+.rws-card-name{font-family:Georgia,serif;font-size:0.9rem;color:#f4e4c1;font-weight:700}
+.rws-card-vn{font-size:0.75rem;color:#8b7355}
+.rws-card-link{font-size:0.8rem;color:#c9a227;border:1px solid #8b6914;border-radius:15px;padding:0.3rem 0.75rem;transition:all 0.2s}
+.rws-card-link:hover{background:rgba(201,162,39,0.1);border-color:#c9a227}
+
 @media print{header,.search-section,.filter-section,.app-footer{position:static!important}.modal-overlay{position:static;opacity:1;pointer-events:all}}
 
 /* ========== TOC Quick Links ========== */
@@ -260,6 +294,7 @@ header{text-align:center;padding:2rem 1rem 1.5rem;background:linear-gradient(180
     <div class="header-row">
       <h1 class="header-title">B3's Tarot Index</h1>
       <button class="intro-btn" id="introBtn" title="Hướng dẫn">❓</button>
+      <button class="pcs-toggle-btn" id="pcsToggleBtn" title="RWS Helper">🃏</button>
     </div>
     <p class="header-sub">Tarot Tellers' Precious</p>
   </div>
@@ -311,11 +346,59 @@ header{text-align:center;padding:2rem 1rem 1.5rem;background:linear-gradient(180
 
 <div id="resultsInfo" class="section-count" style="text-align:center;margin-bottom:1rem"></div>
 
+<!-- ===== INDEX VIEW ===== -->
+<div id="indexView">
 <div id="cardContainer"></div>
 
 <footer class="app-footer">
   <p class="footer-text"><a href="https://ducban.com" target="_blank" rel="noopener">B3</a>'s <a href="https://github.com/ducban/tarot-index" target="_blank" rel="noopener">Tarot Index</a> &copy; 2026 — An index he made for himself.</p>
 </footer>
+</div>
+</div>
+
+<!-- ===== RWS HELPER VIEW ===== -->
+<div id="rwsView" class="rws-view hidden">
+  <header class="rws-header">
+    <div class="rws-header-inner">
+      <button class="rws-back-btn" id="rwsBackBtn">← Index</button>
+      <div class="rws-header-center">
+        <h1 class="rws-title">🃏 RWS Helper</h1>
+        <p class="rws-sub">Nhận diện bài Pamela Colman Smith</p>
+      </div>
+    </div>
+  </header>
+
+  <div class="rws-search-section">
+    <div class="search-wrapper">
+      <div class="search-input-wrap">
+        <span class="search-icon">🔍</span>
+        <input type="text" class="search-input" id="rwsSearchInput" placeholder="Tìm theo mô tả hình ảnh..." autocomplete="off">
+      </div>
+    </div>
+    <div class="rws-tags" id="rwsTags">
+      <button class="rws-tag" data-tag="person">👤 Người</button>
+      <button class="rws-tag" data-tag="crowd">👥 Nhiều người</button>
+      <button class="rws-tag" data-tag="horse">🐴 Ngựa</button>
+      <button class="rws-tag" data-tag="sword">⚔️ Kiếm</button>
+      <button class="rws-tag" data-tag="cup">🏆 Chén</button>
+      <button class="rws-tag" data-tag="wand">🔥 Gậy</button>
+      <button class="rws-tag" data-tag="coin">💰 Tiền</button>
+      <button class="rws-tag" data-tag="water">🌊 Nước</button>
+      <button class="rws-tag" data-tag="lightning">⚡ Sét</button>
+      <button class="rws-tag" data-tag="tower">🏰 Tháp</button>
+      <button class="rws-tag" data-tag="moon">🌙 Trăng</button>
+      <button class="rws-tag" data-tag="angel">👼 Thiên thần</button>
+      <button class="rws-tag" data-tag="animal">🐾 Động vật</button>
+      <button class="rws-tag" data-tag="tree">🌳 Cây</button>
+      <button class="rws-tag" data-tag="crown">👑 Vương miện</button>
+    </div>
+  </div>
+
+  <div id="rwsResults"></div>
+
+  <footer class="app-footer">
+    <p class="footer-text">🃏 RWS Helper — Pamela Colman Smith's Artwork Identifier</p>
+  </footer>
 </div>
 
 <!-- Intro Modal -->
@@ -904,6 +987,213 @@ if ('serviceWorker' in navigator) {
   const swUrl = URL.createObjectURL(swBlob);
   navigator.serviceWorker.register(swUrl).catch(() => {});
 }
+
+// ========== RWS HELPER ==========
+const rwsToggleBtn = document.getElementById('pcsToggleBtn');
+const rwsBackBtn = document.getElementById('rwsBackBtn');
+const indexView = document.getElementById('indexView');
+const rwsView = document.getElementById('rwsView');
+const rwsSearchInput = document.getElementById('rwsSearchInput');
+const rwsTags = document.getElementById('rwsTags');
+const rwsResults = document.getElementById('rwsResults');
+let rwsActiveTags = new Set();
+
+// RWS artwork descriptions and tags for each card
+const rwsData = {
+  "fool": { tags: ["person","animal","tree"], desc: "Người trẻ đứng trên vách đá nhô ra, nhìn lên trời. Bó gậy nhỏ trên vai. Chó nhỏ nhảy theo bên chân. Núi tuyết xa. Hoa hồng trắng." },
+  "magician": { tags: ["person","sword","cup","wand","coin"], desc: "Người đàn ông đứng sau bàn, tay phải cầm đũa thần hướng lên. Trên bàn: cốc, kiếm, tiền xu, gậy. Hoa hồng và trường xuân dây quanh. Số ∞ trên đầu." },
+  "high-priestess": { tags: ["person","crown","moon"], desc: "Phụ nữ ngồi giữa hai cột trụ đen trắng. Trăng lưỡi liềm dưới chân. Cuốn sách mở trên lòng. Màn che thêu lựu và tranh cọ." },
+  "empress": { tags: ["person","crown","tree"], desc: "Phụ nữ ngồi trên đệm trong rừng. Vương miện 12 ngôi sao. Áo lụa hoa văn. Quyền trượng. Lúa mì chín vàng. Suối chảy. Cây xanh tươi." },
+  "emperor": { tags: ["person","crown"], desc: "Người đàn ông ngồi trên ngai đá, quay mặt phải. Râu dài, vương miện. Giáp sắt dưới áo choàng đỏ. Cầm quyền trượng hình chữ thập. Dãy núi phía sau." },
+  "hierophant": { tags: ["person","crown","crowd"], desc: "Giáo hoàng ngồi giữa hai cột trụ. Hai đệ tử quỳ phía trước. Ba tước vương miện. Chìa khóa bắt chéo dưới chân. Trang phục hồng." },
+  "lovers": { tags: ["person","crowd","angel","tree"], desc: "Người đàn ông và phụ nữ đứng trần. Thiên thần bay trên, mây che thân dưới. Cây trái cây sau nam. Cây rắn sau nữ. Núi lửa xa." },
+  "chariot": { tags: ["person","crown","animal"], desc: "Chiến binh đứng trên xe chiến, cầm quyền trượng. Hai con nhân sư đen trắng kéo xe không dây cương. Mui xe có hình chuỗi tinh tú. Dây đeo vai." },
+  "strength": { tags: ["person","animal"], desc: "Phụ nữ nhẹ nhàng mở miệng sư tử. Biểu tượng ∞ trên đầu. Hoa trường xuân quanh. Núi xa. Sư tử vàng lớn, đuôi ngoắt." },
+  "hermit": { tags: ["person"], desc: "Ông già đứng trên đỉnh núi, cầm đèn lồng sáng. Gậy dài trong tay trái. Áo choàng trùm đầu. Núi tuyết tối. Chân đứng gồ cao." },
+  "wheel-of-fortune": { tags: ["animal"], desc: "Bánh xe lớn ở giữa. Bốn sinh vật ở bốn góc: bò, sư tử, đại bàng, người. Rắn cắn đuôi quanh vành. Cáo và chú chó dưới bánh xe. Chữ Hebrew và T.A.R.O trên vành." },
+  "justice": { tags: ["person","crown","sword"], desc: "Phụ nữ ngồi trên ngai, tay phải cầm kiếm thẳng đứng, tay trái cầm cân. Màn che sau lưng. Giày đỏ. Vương miện vàng." },
+  "hanged-man": { tags: ["person","tree"], desc: "Người đàn ông treo ngược một chân trên cây chữ T. Áo xanh, quần đỏ. Hào quang vàng quanh đầu. Tay trái sau lưng, tay phải giơ ra. Mặt hồ." },
+  "death": { tags: ["person","horse","animal","crown"], desc: "Bộ xương cưỡi ngựa trắng. Cầm cờ đen hoa hồng trắng. Vua nằm chết dưới chân. Trẻ em, giáo hoàng, phụ nữ van xin. Mặt trời mọc giữa hai tháp." },
+  "temperance": { tags: ["person","angel","water","tree"], desc: "Thiên thần đứng bên hồ, rót nước từ cốc này sang cốc khác. Chân một bên nước, một bên đất. Hoa trường xuân trên ngực. Mặt trời phía sau có vương miện. Đường núi." },
+  "devil": { tags: ["person","crowd","animal","tree"], desc: "Quỷ sừng dê ngồi trên đài đen. Người đàn ông và phụ nữ trần xích cổ. Đuốc ngược trên sừng. Đuôi dài. Ngũ giác trên đài. Xích lỏng — có thể tháo." },
+  "tower": { tags: ["lightning","crown","person","crowd"], desc: "Tháp cao bị sét đánh nát đỉnh. Vương miện rơi. Hai người rơi xuống. Cửa sổ mở lửa. Mây đen. Mưa tro." },
+  "star": { tags: ["person","water","animal","tree"], desc: "Phụ nữ trần quỳ bên hồ, đổ nước từ hai cốc. Ngôi sao lớn tám cánh trên trời. Bảy ngôi sao nhỏ. Chim ibis trên cây. Đất đá." },
+  "moon": { tags: ["moon","animal","water","tower"], desc: "Mặt trăng lớn nhìn xuống, mặt người. Hai chó sói tru. Tôm hùm lớn từ nước. Đường uốn lượn từ hồ đến hai tháp xa. Giọt sương." },
+  "sun": { tags: ["person","animal","tree"], desc: "Mặt trời lớn tỏa tia sáng, mặt cười. Đứa trẻ trần cưỡi ngựa trắng. Cờ đỏ trong tay. Hoa hướng dương lớn phía sau tường. Cờ tung bay." },
+  "judgement": { tags: ["person","crowd","angel"], desc: "Thiên thần lớn trong mây thổi kèn. Cờ trắng thập tự đỏ. Người chết trồi từ mộ, tay dang. Gia đình ba người. Núi tuyết." },
+  "world": { tags: ["person","tree","crown"], desc: "Phụ nữ trần nhảy trong vòng nguyệt quế lớn. Chỉ một chân chạm đất. Hai quyền trượng. Bốn sinh vật ở góc: sư tử, bò, người, đại bàng. Ruy băng hình ∞." },
+  // Wands
+  "wands-ace": { tags: ["wand","tree"], desc: "Tay từ đám mây cầm một cây gậy nảy chồi lá xanh. Lâu đài trên đồi xa. Bức tường." },
+  "wands-2": { tags: ["person","wand","tree"], desc: "Người đàn ông đứng trên lâu đài nhìn ra biển. Tay cầm quả địa cầu. Hai cây gậy đứng hai bên. Đồi xanh xa." },
+  "wands-3": { tags: ["person","wand","water"], desc: "Người đàn ông đứng nhìn ra biển, lưng về phía người xem. Ba cây gậy lớn. Tàu thuyền trên biển. Đồi vàng." },
+  "wands-4": { tags: ["person","crowd","wand","tree"], desc: "Bốn cây gậy chéo tạo vòm hoa. Bốn người vui vẻ. Lâu đài xa. Hoa tươi." },
+  "wands-5": { tags: ["person","crowd","wand"], desc: "Năm người cầm gậy đánh nhau. Bối cảnh hỗn loạn. Mỗi người giơ gậy lên." },
+  "wands-6": { tags: ["person","horse","animal","wand","crown"], desc: "Người cưỡi ngựa đội vương miện lá, cầm gậy có vòng nguyệt quế. Đám đông cầm gậy vẫy chào. Vòng nguyệt quế trên đầu ngựa." },
+  "wands-7": { tags: ["person","wand"], desc: "Người đàn ông đứng trên cao cầm gậy, sáu cây gậy dưới chân giơ lên từ dưới. Phong cảnh xanh." },
+  "wands-8": { tags: ["wand","water"], desc: "Tám cây gậy bay ngang qua bầu trời. Dưới là đồi xanh và đồng ruộng. Nước chảy." },
+  "wands-9": { tags: ["person","wand"], desc: "Người đàn ông bị thương ôm gậy, đứng trước hàng rào. Tám cây gậy sau lưng. Biểu cảm kiên cường." },
+  "wands-10": { tags: ["person","wand"], desc: "Người đàn ông gánh bó mười cây gậy, gần đến ngôi làng. Cúi đầu vì nặng." },
+  "wands-page": { tags: ["person","wand","tree"], desc: "Thanh niên cầm gậy mọc lá, đứng trong cảnh đồng hoang. Đồi xa. Nhìn chăm chú vào gậy." },
+  "wands-knight": { tags: ["person","horse","animal","wand"], desc: "Hiệp sĩ cưỡi ngựa phi nhanh, giơ gậy cao. Áo choàng lửa. Bông lúa và lửa rơi." },
+  "wands-queen": { tags: ["person","crown","wand","animal","tree"], desc: "Nữ hoàng ngồi trên ngai, cầm gậy mọc lá. Mèo đen bên chân. Vương miện. Hoa hướng dương." },
+  "wands-king": { tags: ["person","crown","wand","animal","tree"], desc: "Vua ngồi trên ngai, cầm gậy mọc lá. Thằn lằn/mèo bên chân. Vương miện. Hoa hướng dương. Lửa trên vương miện." },
+  // Cups
+  "cups-ace": { tags: ["cup","water"], desc: "Chén lớn tràn nước, trên tay từ đám mây. Bồ câu bay xuống ngậm bánh thánh. Nước chảy thành suối. Hoa súng trên mặt nước." },
+  "cups-2": { tags: ["person","crowd","cup"], desc: "Hai người đứng đối mặt, mỗi người cầm một chén. Sư tử cánh giữa hai đầu. Nhà trong vườn xa." },
+  "cups-3": { tags: ["person","crowd","cup","tree"], desc: "Ba phụ nữ nhảy múa vòng tròn, nâng chén lên. Hoa quả trên đầu. Đồi xanh." },
+  "cups-4": { tags: ["person","cup","tree"], desc: "Người ngồi gục dưới cây, hai tay khoác. Ba chén trên đất, một chén từ mây đưa ra. Không chú ý." },
+  "cups-5": { tags: ["person","cup","water"], desc: "Người đàn ông khoác áo choàng đen nhìn ba chén đổ. Hai chén đầy còn đứng sau lưng. Cầu bắc qua sông. Lâu đài xa." },
+  "cups-6": { tags: ["person","cup","tree"], desc: "Đứa trẻ tặng hoa cho đứa trẻ khác. Sáu chén hoa đầy. Vườn nhà. Biển xa." },
+  "cups-7": { tags: ["person","cup"], desc: "Người đàn ông nhìn bảy chén trong mây, mỗi chén chứa: lâu đài,珠宝, vòng nguyệt quế, rồng, người, rắn, lửa." },
+  "cups-8": { tags: ["person","cup","water","moon"], desc: "Người đàn ông quay lưng bỏ đi, để lại tám chén xếp cao. Mặt trăng khuyết. Đường núi. Sương mù." },
+  "cups-9": { tags: ["person","cup","crown"], desc: "Người đàn ông ngồi trước chín chén xếp cao, tay khoác. Biểu cảm vừa ý. Bàn thịnh soạn." },
+  "cups-10": { tags: ["person","crowd","cup","tree","water"], desc: "Gia đình hạnh phúc: cha mẹ ôm nhau, trẻ nhảy múa. Mười chén cầu vồng. Nhà trên đồi. Cảnh làng quê." },
+  "cups-page": { tags: ["person","cup","water"], desc: "Thanh niên cầm chén, cá nhảy từ chén. Nước chảy. Biểu cảm ngạc nhiên." },
+  "cups-knight": { tags: ["person","horse","animal","cup"], desc: "Hiệp sĩ cưỡi ngựa trắng, cầm chén. Áo choàng cá. Nước chảy trên đường." },
+  "cups-queen": { tags: ["person","crown","cup","water"], desc: "Nữ hoàng ngồi trên ngai bên nước, cầm chén có hai tay ôm. Nước trong suốt. Cá nhảy. Rừng bên bờ." },
+  "cups-king": { tags: ["person","crown","cup","water","tree"], desc: "Vua ngồi trên thuyền lượn sóng, cầm chén. Vương miện. Cây bên bờ. Cá nhảy từ nước. Sóng biển." },
+  // Swords
+  "swords-ace": { tags: ["sword","crown"], desc: "Một thanh kiếm thẳng đứng, mũi xuống, vương miện treo trên lưỡi. Cành cọ và cành olive. Núi và mây." },
+  "swords-2": { tags: ["person","sword","moon","water"], desc: "Phụ nữ ngồi bịt mắt, cầm hai kiếm bắt chéo. Nước biển. Mặt trăng. Núi xa." },
+  "swords-3": { tags: ["sword"], desc: "Ba thanh kiếm đâm qua trái tim đỏ. Mưa rơi xuống. Trời xám." },
+  "swords-4": { tags: ["person","sword","tree"], desc: "Người nằm trong quan tài hoặc giường, ba kiếm treo trên tường, một kiếm bên cạnh. Cửa sổ kính màu." },
+  "swords-5": { tags: ["person","crowd","sword","water"], desc: "Người đàn ông cầm ba kiếm, quay lưng. Hai người ngồi khóc, cầm kiếm. Nước ao xao lãng. Mây xám." },
+  "swords-6": { tags: ["person","crowd","sword","water"], desc: "Thuyền chở phụ nữ và trẻ em. Người cầm sào dầm thuyền. Sáu thanh kiếm cắm trong thuyền. Nước êm đổ sang khúc xao." },
+  "swords-7": { tags: ["person","sword"], desc: "Người đàn ông lén bỏ chạy mang theo năm thanh kiếm. Hai kiếm còn cắm trên đất. Trại quân sự xa." },
+  "swords-8": { tags: ["person","sword","water"], desc: "Phụ nữ bịt mắt trói chân, đứng giữa tám thanh kiếm cắm xung quanh. Lâu đài xa. Nước ao." },
+  "swords-9": { tags: ["person","sword"], desc: "Người ngồi dậy trên giường, ôm mặt. Chín thanh kiếm treo trên tường. Chăn đỏ." },
+  "swords-10": { tags: ["person","sword"], desc: "Người nằm chết, mười thanh kiếm trên lưng. Mặt trời mọc. Bầu trời tối chuyển sáng. Cảnh hy vọng." },
+  "swords-page": { tags: ["person","sword","water","tree"], desc: "Thanh niên đứng trên gò đất, cầm kiếm thẳng đứng. Gió thổi. Mây bay nhanh. Cây nghiêng." },
+  "swords-knight": { tags: ["person","horse","animal","sword"], desc: "Hiệp sĩ cưỡi ngựa phi nhanh, kiếm giơ cao. Áo choàng bay trong gió. Mây xám." },
+  "swords-queen": { tags: ["person","crown","sword","water","tree"], desc: "Nữ hoàng ngồi trên ngai, tay phải giơ kiếm, tay trái dang ra. Vương miện. Cây nghiêng gió. Mây bay. Chim bay." },
+  "swords-king": { tags: ["person","crown","sword","water","tree"], desc: "Vua ngồi trên ngai, kiếm giơ cao. Vương miện. Cây nghiêng gió. Mây bay. Chim bay." },
+  // Pentacles
+  "pentacles-ace": { tags: ["coin","water","tree"], desc: "Tay từ đám mây cầm đồng tiền lớn. Hoa trường xuân. Đường vườn. Cổng vòm." },
+  "pentacles-2": { tags: ["person","coin","water"], desc: "Người đàn ông di động hai đồng tiền, chân ↑∞. Tàu trên biển gợn sóng. Hai đồng tiền xoay." },
+  "pentacles-3": { tags: ["person","crowd","coin"], desc: "Ba người trong xưởng: một người trên bục (kiến trúc sư), hai thợ. Hai đồng tiền trên vòm. Bản vẽ." },
+  "pentacles-4": { tags: ["person","crown","coin"], desc: "Người đàn ông ôm chặt một đồng tiền, chân đạp hai đồng tiền, đầu đội một đồng tiền. Vương miện. Thành trì." },
+  "pentacles-5": { tags: ["person","crowd","coin","water","tree"], desc: "Hai người nghèo khổ đi trong tuyết. Nười quẹt. Một người nạng. Cửa sổ sáng trong nhà thờ. Năm đồng tiền trên kính màu." },
+  "pentacles-6": { tags: ["person","crowd","coin"], desc: "Người giàu cân đồng tiền cho người nghèo quỳ. Cân. Đồng tiền rơi." },
+  "pentacles-7": { tags: ["person","coin","tree"], desc: "Người nông dân đứng gậy, nhìn sáu đồng tiền trên cây. Một đồng tiền dưới chân. Cây nho." },
+  "pentacles-8": { tags: ["person","coin"], desc: "Thợ kim hoàn ngồi làm việc. Tám đồng tiền trên bàn. Công cụ. Làng xa." },
+  "pentacles-9": { tags: ["person","coin","tree","animal"], desc: "Phụ nữ đứng trong vườn nho, chim hiền diện trên tay. Đồng tiền trên cây nho. Vườn tươi tốt." },
+  "pentacles-10": { tags: ["person","crowd","coin","tree","animal"], desc: "Gia đình ba thế hệ: ông bà, cha mẹ, con, chó. Mười đồng tiền trên vòm. Nhà lớn. Cửa thành." },
+  "pentacles-page": { tags: ["person","coin","tree"], desc: "Thanh niên cầm đồng tiền ngắm. Đất hoang. Đồi xa. Cây nảy chồi." },
+  "pentacles-knight": { tags: ["person","horse","animal","coin"], desc: "Hiệp sĩ cưỡi ngựa đen, cầm đồng tiền. Đồ điền. Đồng xu lớn." },
+  "pentacles-queen": { tags: ["person","crown","coin","animal","tree"], desc: "Nữ hoàng ngồi trên ngai trong vườn, đồng tiền trên đùi. Vương miện. Thỏ dưới chân. Hoa hồng." },
+  "pentacles-king": { tags: ["person","crown","coin","animal","tree"], desc: "Vua ngồi trên ngai trong vườn nho, cầm quyền trượng và đồng tiền. Vương miện. Bò dưới chân. Lâu đài. Hoa." }
+};
+
+function generateRWSArtSVG(id) {
+  const art = rwsData[id];
+  if (!art) return '<svg viewBox="0 0 180 180" xmlns="http://www.w3.org/2000/svg"><rect fill="#1a0a2e" width="180" height="180" rx="8"/><text x="90" y="90" text-anchor="middle" fill="#5a4a3a" font-size="14">?</text></svg>';
+  const card = cards.find(c => c.id === id);
+  const suit = card?.suit || 'major';
+  const colors = { wands: '#ff6b35', cups: '#2a9d8f', swords: '#c0c0c0', pentacles: '#c9a227', major: '#9b59b6' };
+  const col = colors[suit] || '#9b59b6';
+  // Generate abstract geometric representation based on tags
+  let shapes = '';
+  const tags = art.tags;
+  let y = 20;
+  if (tags.includes('person')) { shapes += `<circle cx="90" cy="${y+15}" r="12" fill="none" stroke="${col}" stroke-width="1.5"/><line x1="90" y1="${y+27}" x2="90" y2="${y+60}" stroke="${col}" stroke-width="1.5"/><line x1="90" y1="${y+37}" x2="70" y2="${y+52}" stroke="${col}" stroke-width="1.5"/><line x1="90" y1="${y+37}" x2="110" y2="${y+52}" stroke="${col}" stroke-width="1.5"/>`; y += 75; }
+  if (tags.includes('crowd')) { shapes += `<circle cx="60" cy="30" r="8" fill="none" stroke="${col}" stroke-width="1"/><circle cx="90" cy="28" r="8" fill="none" stroke="${col}" stroke-width="1"/><circle cx="120" cy="30" r="8" fill="none" stroke="${col}" stroke-width="1"/>`; y = 55; }
+  if (tags.includes('horse') || tags.includes('animal')) { shapes += `<ellipse cx="130" cy="120" rx="18" ry="12" fill="none" stroke="${col}" stroke-width="1.5"/><circle cx="145" cy="115" r="5" fill="none" stroke="${col}" stroke-width="1.5"/>`; }
+  if (tags.includes('sword')) { shapes += `<line x1="45" y1="${y}" x2="45" y2="${y+40}" stroke="#c0c0c0" stroke-width="2"/><line x1="35" y1="${y+8}" x2="55" y2="${y+8}" stroke="#c0c0c0" stroke-width="2"/>`; y += 50; }
+  if (tags.includes('cup')) { shapes += `<path d="M${80},${y} Q90,${y+25} 100,${y} Z" fill="none" stroke="${col}" stroke-width="1.5"/><line x1="85" y1="${y}" x2="95" y2="${y}" stroke="${col}" stroke-width="1.5"/>`; y += 30; }
+  if (tags.includes('wand')) { shapes += `<line x1="50" y1="${y}" x2="50" y2="${y+40}" stroke="${col}" stroke-width="2.5" stroke-linecap="round"/>`; y += 50; }
+  if (tags.includes('coin')) { shapes += `<circle cx="135" cy="${y+15}" r="12" fill="none" stroke="#c9a227" stroke-width="1.5"/><text x="135" y="${y+19}" text-anchor="middle" fill="#c9a227" font-size="10">$</text>`; y += 35; }
+  if (tags.includes('water')) { shapes += `<path d="M20,155 Q45,145 70,155 Q95,165 120,155 Q145,145 165,155" fill="none" stroke="#2a9d8f" stroke-width="1.5" opacity="0.6"/>`; }
+  if (tags.includes('lightning')) { shapes += `<polyline points="90,10 80,50 95,50 85,90" fill="none" stroke="#f1c40f" stroke-width="2"/>`; }
+  if (tags.includes('tower')) { shapes += `<rect x="75" y="40" width="30" height="60" fill="none" stroke="${col}" stroke-width="1.5"/><rect x="85" y="30" width="10" height="15" fill="none" stroke="${col}" stroke-width="1"/>`; }
+  if (tags.includes('moon')) { shapes += `<circle cx="45" cy="30" r="15" fill="none" stroke="#c0c0c0" stroke-width="1.5"/><circle cx="52" cy="28" r="12" fill="#1a0a2e" stroke="none"/>`; }
+  if (tags.includes('angel')) { shapes += `<polygon points="90,10 80,30 100,30" fill="none" stroke="${col}" stroke-width="1" opacity="0.7"/><line x1="90" y1="30" x2="90" y2="50" stroke="${col}" stroke-width="1" opacity="0.7"/>`; }
+  if (tags.includes('tree')) { shapes += `<line x1="160" y1="160" x2="160" y2="110" stroke="#5a8f3c" stroke-width="2"/><circle cx="160" cy="100" r="15" fill="none" stroke="#5a8f3c" stroke-width="1.5" opacity="0.6"/>`; }
+  if (tags.includes('crown')) { shapes += `<polyline points="70,20 75,10 80,20 85,8 90,20 95,8 100,20 105,10 110,20" fill="none" stroke="#c9a227" stroke-width="1.5"/>`; }
+  return `<svg viewBox="0 0 180 180" xmlns="http://www.w3.org/2000/svg"><rect fill="#1a0a2e" width="180" height="180" rx="8"/>${shapes}</svg>`;
+}
+
+function renderRWS() {
+  const q = (rwsSearchInput?.value || '').toLowerCase().trim();
+  const filtered = cards.filter(card => {
+    const rd = rwsData[card.id];
+    if (!rd) return false;
+    // Tag filter
+    if (rwsActiveTags.size > 0) {
+      const hasTag = rd.tags.some(t => rwsActiveTags.has(t));
+      if (!hasTag) return false;
+    }
+    // Text search
+    if (q) {
+      const text = `${card.name} ${card.vietnameseName} ${rd.desc} ${rd.tags.join(' ')}`.toLowerCase();
+      if (!text.includes(q)) return false;
+    }
+    return true;
+  });
+
+  let html = `<div class="rws-grid">`;
+  filtered.forEach(card => {
+    const rd = rwsData[card.id];
+    if (!rd) return;
+    html += `
+      <div class="rws-card">
+        <div class="rws-card-art">${generateRWSArtSVG(card.id)}</div>
+        <div class="rws-card-desc">${rd.desc}</div>
+        <div class="rws-card-info">
+          <div>
+            <div class="rws-card-name">${card.name} (${card.number})</div>
+            <div class="rws-card-vn">${card.vietnameseName}</div>
+          </div>
+          <button class="rws-card-link" data-id="${card.id}">Xem →</button>
+        </div>
+      </div>`;
+  });
+  html += '</div>';
+  if (filtered.length === 0) html = '<div class="no-results">Không tìm thấy lá bài nào phù hợp.</div>';
+  rwsResults.innerHTML = html;
+
+  // Wire up "Xem" buttons
+  rwsResults.querySelectorAll('.rws-card-link').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const card = cards.find(c => c.id === btn.dataset.id);
+      if (card) openModal(card);
+    });
+  });
+}
+
+// Mode switching
+function switchToRWS() {
+  indexView.classList.add('rws-active');
+  rwsView.classList.remove('hidden');
+  document.querySelector('header').style.display = 'none';
+  document.getElementById('searchBarWrap').style.display = 'none';
+  renderRWS();
+}
+
+function switchToIndex() {
+  indexView.classList.remove('rws-active');
+  rwsView.classList.add('hidden');
+  document.querySelector('header').style.display = '';
+  document.getElementById('searchBarWrap').style.display = '';
+}
+
+rwsToggleBtn.addEventListener('click', switchToRWS);
+rwsBackBtn.addEventListener('click', switchToIndex);
+
+rwsSearchInput.addEventListener('input', renderRWS);
+
+rwsTags.addEventListener('click', (e) => {
+  const tag = e.target.closest('.rws-tag');
+  if (!tag) return;
+  const t = tag.dataset.tag;
+  if (rwsActiveTags.has(t)) {
+    rwsActiveTags.delete(t);
+    tag.classList.remove('active');
+  } else {
+    rwsActiveTags.add(t);
+    tag.classList.add('active');
+  }
+  renderRWS();
+});
 
 // ========== INIT ==========
 renderAll();
