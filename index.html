@@ -197,34 +197,42 @@ header{text-align:center;padding:2rem 1rem 1.5rem;background:linear-gradient(180
 /* ========== PRINT ========== */
 /* ========== RWS HELPER MODE ========== */
 .rws-view.hidden{display:none}
-.rws-view{animation:fadeIn 0.4s ease both}
+.rws-view{animation:fadeIn 0.4s ease both;background:#e8d5b0;min-height:100vh;color:#3d2b1f}
 #indexView.rws-active{display:none}
 
-.rws-header{background:linear-gradient(180deg,#1a0a2e 0%,#0f0518 100%);border-bottom:2px solid #9b59b6;padding:1.25rem 1rem;text-align:center}
+.rws-header{background:linear-gradient(180deg,#f5e6c8 0%,#e8d5b0 100%);border-bottom:2px solid #8b6914;padding:1.25rem 1rem;text-align:center}
 .rws-header-inner{display:flex;align-items:center;justify-content:space-between;max-width:1200px;margin:0 auto}
-.rws-back-btn{padding:0.4rem 1rem;border:1.5px solid #8b6914;border-radius:8px;color:#c9a227;font-size:0.85rem;transition:all 0.3s}
-.rws-back-btn:hover{background:rgba(201,162,39,0.15);border-color:#c9a227}
+.rws-back-btn{padding:0.4rem 1rem;border:1.5px solid #8b6914;border-radius:8px;color:#5a3e1b;font-size:0.85rem;transition:all 0.3s;background:transparent}
+.rws-back-btn:hover{background:rgba(139,105,20,0.15);border-color:#c9a227}
 .rws-header-center{flex:1}
-.rws-title{font-size:clamp(1.1rem,4vw,1.6rem);color:#9b59b6;text-transform:uppercase;letter-spacing:2px;margin:0}
-.rws-sub{font-size:0.85rem;color:#7d5ba6;font-style:italic;letter-spacing:1px;margin-top:0.25rem}
+.rws-title{font-size:clamp(1.1rem,4vw,1.6rem);color:#5a3e1b;text-transform:uppercase;letter-spacing:2px;margin:0;font-family:Georgia,serif}
+.rws-sub{font-size:0.85rem;color:#8b7355;font-style:italic;letter-spacing:1px;margin-top:0.25rem}
 
 .rws-search-section{padding:1rem;max-width:1200px;margin:0 auto}
+.rws-search-section .search-input{border-color:#b8860b;color:#3d2b1f;background:rgba(245,230,200,0.6)}
+.rws-search-section .search-input::placeholder{color:#8b7355}
+.rws-search-section .search-icon{color:#b8860b}
 .rws-tags{display:flex;flex-wrap:wrap;gap:0.4rem;margin-top:0.75rem;justify-content:center}
-.rws-tag{padding:0.35rem 0.7rem;font-size:0.78rem;border:1px solid rgba(155,89,182,0.4);border-radius:20px;color:#9b59b6;background:transparent;transition:all 0.2s;white-space:nowrap}
-.rws-tag:hover,.rws-tag.active{background:rgba(155,89,182,0.2);border-color:#9b59b6;color:#c39bd3}
+.rws-tag{padding:0.35rem 0.7rem;font-size:0.78rem;border:1px solid rgba(139,105,20,0.4);border-radius:20px;color:#5a3e1b;background:transparent;transition:all 0.2s;white-space:nowrap}
+.rws-tag:hover,.rws-tag.active{background:rgba(139,105,20,0.15);border-color:#8b6914;color:#3d2b1f}
 
-.rws-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:1.25rem;padding:0 1rem 2rem;max-width:1200px;margin:0 auto}
+.rws-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:1.25rem;padding:0 1rem 2rem;max-width:1200px;margin:0 auto}
 @media(max-width:480px){.rws-grid{grid-template-columns:1fr}}
-.rws-card{background:linear-gradient(180deg,#2d1b4e,#1a0a2e);border:2px solid rgba(155,89,182,0.4);border-radius:14px;overflow:hidden;transition:all 0.3s}
-.rws-card:hover{border-color:#9b59b6;box-shadow:0 8px 25px rgba(155,89,182,0.15)}
-.rws-card-art{background:rgba(15,5,24,0.5);display:flex;align-items:center;justify-content:center;min-height:200px;padding:1.5rem}
-.rws-card-art svg{max-width:180px;max-height:180px}
-.rws-card-desc{padding:0.75rem 1rem;font-size:0.85rem;color:#c39bd3;line-height:1.6;border-bottom:1px solid rgba(155,89,182,0.2)}
-.rws-card-info{padding:0.75rem 1rem;display:flex;align-items:center;justify-content:space-between}
-.rws-card-name{font-family:Georgia,serif;font-size:0.9rem;color:#f4e4c1;font-weight:700}
+.rws-card{background:#f5e6c8;border:2px solid #b8860b;border-radius:4px;overflow:hidden;transition:all 0.3s;box-shadow:2px 2px 8px rgba(0,0,0,0.15)}
+.rws-card:hover{box-shadow:4px 4px 16px rgba(0,0,0,0.2);border-color:#8b6914}
+.rws-card-art{background:#e8d5b0;display:flex;align-items:center;justify-content:center;min-height:240px;padding:0.75rem;position:relative}
+.rws-card-art::after{content:'';position:absolute;inset:4px;border:1px solid rgba(139,105,20,0.3);border-radius:2px;pointer-events:none}
+.rws-card-art svg{width:100%;max-width:200px;height:auto}
+.rws-card-desc{padding:0.75rem 1rem;font-size:0.85rem;color:#3d2b1f;line-height:1.6;border-top:1px solid rgba(139,105,20,0.3);background:rgba(232,213,176,0.5)}
+.rws-card-info{padding:0.75rem 1rem;display:flex;align-items:center;justify-content:space-between;background:#f5e6c8}
+.rws-card-name{font-family:Georgia,serif;font-size:0.9rem;color:#3d2b1f;font-weight:700}
 .rws-card-vn{font-size:0.75rem;color:#8b7355}
-.rws-card-link{font-size:0.8rem;color:#c9a227;border:1px solid #8b6914;border-radius:15px;padding:0.3rem 0.75rem;transition:all 0.2s}
-.rws-card-link:hover{background:rgba(201,162,39,0.1);border-color:#c9a227}
+.rws-card-link{font-size:0.8rem;color:#5a3e1b;border:1px solid #b8860b;border-radius:15px;padding:0.3rem 0.75rem;transition:all 0.2s;background:transparent}
+.rws-card-link:hover{background:rgba(139,105,20,0.15);border-color:#8b6914}
+
+.rws-view .app-footer{border-top-color:rgba(139,105,20,0.3)}
+.rws-view .footer-text{color:#8b7355}
+.rws-view .footer-text a{color:#5a3e1b}
 
 @media print{header,.search-section,.filter-section,.app-footer{position:static!important}.modal-overlay{position:static;opacity:1;pointer-events:all}}
 
@@ -1086,30 +1094,158 @@ const rwsData = {
 
 function generateRWSArtSVG(id) {
   const art = rwsData[id];
-  if (!art) return '<svg viewBox="0 0 180 180" xmlns="http://www.w3.org/2000/svg"><rect fill="#1a0a2e" width="180" height="180" rx="8"/><text x="90" y="90" text-anchor="middle" fill="#5a4a3a" font-size="14">?</text></svg>';
   const card = cards.find(c => c.id === id);
-  const suit = card?.suit || 'major';
-  const colors = { wands: '#ff6b35', cups: '#2a9d8f', swords: '#c0c0c0', pentacles: '#c9a227', major: '#9b59b6' };
-  const col = colors[suit] || '#9b59b6';
-  // Generate abstract geometric representation based on tags
-  let shapes = '';
+  if (!art || !card) return '';
+  const suit = card.suit || 'major';
+  // PCS color palette — watercolor, muted earth tones
+  const ink = '#2c1810'; // dark brown ink
+  const colors = {
+    major: { sky: '#d4c5a9', ground: '#c4a87a', accent: '#8b4513', cloth: '#6b4226' },
+    wands: { sky: '#e8d5b0', ground: '#d4b896', accent: '#cc5500', cloth: '#b8460a' },
+    cups: { sky: '#d0dce8', ground: '#c4b896', accent: '#2a6496', cloth: '#1a4a6e' },
+    swords: { sky: '#c8cdd4', ground: '#b8a88a', accent: '#4a5568', cloth: '#2d3748' },
+    pentacles: { sky: '#d4c5a0', ground: '#b8a070', accent: '#6b8e23', cloth: '#4a6e12' }
+  };
+  const c = colors[suit] || colors.major;
   const tags = art.tags;
-  let y = 20;
-  if (tags.includes('person')) { shapes += `<circle cx="90" cy="${y+15}" r="12" fill="none" stroke="${col}" stroke-width="1.5"/><line x1="90" y1="${y+27}" x2="90" y2="${y+60}" stroke="${col}" stroke-width="1.5"/><line x1="90" y1="${y+37}" x2="70" y2="${y+52}" stroke="${col}" stroke-width="1.5"/><line x1="90" y1="${y+37}" x2="110" y2="${y+52}" stroke="${col}" stroke-width="1.5"/>`; y += 75; }
-  if (tags.includes('crowd')) { shapes += `<circle cx="60" cy="30" r="8" fill="none" stroke="${col}" stroke-width="1"/><circle cx="90" cy="28" r="8" fill="none" stroke="${col}" stroke-width="1"/><circle cx="120" cy="30" r="8" fill="none" stroke="${col}" stroke-width="1"/>`; y = 55; }
-  if (tags.includes('horse') || tags.includes('animal')) { shapes += `<ellipse cx="130" cy="120" rx="18" ry="12" fill="none" stroke="${col}" stroke-width="1.5"/><circle cx="145" cy="115" r="5" fill="none" stroke="${col}" stroke-width="1.5"/>`; }
-  if (tags.includes('sword')) { shapes += `<line x1="45" y1="${y}" x2="45" y2="${y+40}" stroke="#c0c0c0" stroke-width="2"/><line x1="35" y1="${y+8}" x2="55" y2="${y+8}" stroke="#c0c0c0" stroke-width="2"/>`; y += 50; }
-  if (tags.includes('cup')) { shapes += `<path d="M${80},${y} Q90,${y+25} 100,${y} Z" fill="none" stroke="${col}" stroke-width="1.5"/><line x1="85" y1="${y}" x2="95" y2="${y}" stroke="${col}" stroke-width="1.5"/>`; y += 30; }
-  if (tags.includes('wand')) { shapes += `<line x1="50" y1="${y}" x2="50" y2="${y+40}" stroke="${col}" stroke-width="2.5" stroke-linecap="round"/>`; y += 50; }
-  if (tags.includes('coin')) { shapes += `<circle cx="135" cy="${y+15}" r="12" fill="none" stroke="#c9a227" stroke-width="1.5"/><text x="135" y="${y+19}" text-anchor="middle" fill="#c9a227" font-size="10">$</text>`; y += 35; }
-  if (tags.includes('water')) { shapes += `<path d="M20,155 Q45,145 70,155 Q95,165 120,155 Q145,145 165,155" fill="none" stroke="#2a9d8f" stroke-width="1.5" opacity="0.6"/>`; }
-  if (tags.includes('lightning')) { shapes += `<polyline points="90,10 80,50 95,50 85,90" fill="none" stroke="#f1c40f" stroke-width="2"/>`; }
-  if (tags.includes('tower')) { shapes += `<rect x="75" y="40" width="30" height="60" fill="none" stroke="${col}" stroke-width="1.5"/><rect x="85" y="30" width="10" height="15" fill="none" stroke="${col}" stroke-width="1"/>`; }
-  if (tags.includes('moon')) { shapes += `<circle cx="45" cy="30" r="15" fill="none" stroke="#c0c0c0" stroke-width="1.5"/><circle cx="52" cy="28" r="12" fill="#1a0a2e" stroke="none"/>`; }
-  if (tags.includes('angel')) { shapes += `<polygon points="90,10 80,30 100,30" fill="none" stroke="${col}" stroke-width="1" opacity="0.7"/><line x1="90" y1="30" x2="90" y2="50" stroke="${col}" stroke-width="1" opacity="0.7"/>`; }
-  if (tags.includes('tree')) { shapes += `<line x1="160" y1="160" x2="160" y2="110" stroke="#5a8f3c" stroke-width="2"/><circle cx="160" cy="100" r="15" fill="none" stroke="#5a8f3c" stroke-width="1.5" opacity="0.6"/>`; }
-  if (tags.includes('crown')) { shapes += `<polyline points="70,20 75,10 80,20 85,8 90,20 95,8 100,20 105,10 110,20" fill="none" stroke="#c9a227" stroke-width="1.5"/>`; }
-  return `<svg viewBox="0 0 180 180" xmlns="http://www.w3.org/2000/svg"><rect fill="#1a0a2e" width="180" height="180" rx="8"/>${shapes}</svg>`;
+
+  let s = ''; // shapes accumulator
+  const W = 200, H = 300;
+
+  // Background: parchment sky gradient
+  s += `<rect x="0" y="0" width="${W}" height="${H}" fill="${c.sky}"/>`;
+  // Ground plane
+  s += `<path d="M0,${H*0.72} Q${W*0.25},${H*0.68} ${W*0.5},${H*0.72} Q${W*0.75},${H*0.76} ${W},${H*0.72} L${W},${H} L0,${H} Z" fill="${c.ground}" opacity="0.6"/>`;
+  // Subtle paper texture lines
+  s += `<line x1="0" y1="${H*0.35}" x2="${W}" y2="${H*0.35}" stroke="${ink}" stroke-width="0.3" opacity="0.1"/>`;
+  s += `<line x1="0" y1="${H*0.7}" x2="${W}" y2="${H*0.7}" stroke="${ink}" stroke-width="0.3" opacity="0.1"/>`;
+
+  // Major arcana roman numeral at top
+  if (suit === 'major') {
+    s += `<text x="${W/2}" y="22" text-anchor="middle" font-family="Georgia,serif" font-size="14" fill="${ink}" opacity="0.5">${card.number}</text>`;
+  }
+
+  // Build scene based on tags with ink-sketch style
+  let px = W * 0.5; // person x center
+  let py = H * 0.3; // person y start
+
+  // Person figure — ink sketch style with cloth color
+  function drawPerson(cx, cy, scale = 1, clothColor = c.cloth) {
+    const sc = scale;
+    return `
+    <!-- head -->
+    <circle cx="${cx}" cy="${cy}" r="${9*sc}" fill="${c.sky}" stroke="${ink}" stroke-width="${1.2*sc}"/>
+    <!-- body -->
+    <path d="M${cx},${cy+9*sc} C${cx-12*sc},${cy+20*sc} ${cx-8*sc},${cy+45*sc} ${cx},${cy+55*sc} C${cx+8*sc},${cy+45*sc} ${cx+12*sc},${cy+20*sc} ${cx},${cy+9*sc}" fill="${clothColor}" fill-opacity="0.6" stroke="${ink}" stroke-width="${1*sc}"/>
+    <!-- arms -->
+    <path d="M${cx-10*sc},${cy+20*sc} Q${cx-22*sc},${cy+30*sc} ${cx-18*sc},${cy+40*sc}" fill="none" stroke="${ink}" stroke-width="${1*sc}" stroke-linecap="round"/>
+    <path d="M${cx+10*sc},${cy+20*sc} Q${cx+22*sc},${cy+30*sc} ${cx+18*sc},${cy+40*sc}" fill="none" stroke="${ink}" stroke-width="${1*sc}" stroke-linecap="round"/>
+    <!-- legs -->
+    <line x1="${cx}" y1="${cy+55*sc}" x2="${cx-10*sc}" y2="${cy+80*sc}" stroke="${ink}" stroke-width="${1*sc}" stroke-linecap="round"/>
+    <line x1="${cx}" y1="${cy+55*sc}" x2="${cx+10*sc}" y2="${cy+80*sc}" stroke="${ink}" stroke-width="${1*sc}" stroke-linecap="round"/>
+    `;
+  }
+
+  // Small person (for crowd scenes)
+  function drawSmallPerson(cx, cy, sc = 0.6) {
+    return `<circle cx="${cx}" cy="${cy}" r="${5*sc}" fill="${c.sky}" stroke="${ink}" stroke-width="${0.8*sc}"/>
+    <line x1="${cx}" y1="${cy+5*sc}" x2="${cx}" y2="${cy+25*sc}" stroke="${ink}" stroke-width="${0.8*sc}"/>
+    <line x1="${cx-8*sc}" y1="${cy+12*sc}" x2="${cx+8*sc}" y2="${cy+12*sc}" stroke="${ink}" stroke-width="${0.8*sc}"/>
+    <line x1="${cx}" y1="${cy+25*sc}" x2="${cx-6*sc}" y2="${cy+38*sc}" stroke="${ink}" stroke-width="${0.8*sc}"/>
+    <line x1="${cx}" y1="${cy+25*sc}" x2="${cx+6*sc}" y2="${cy+38*sc}" stroke="${ink}" stroke-width="${0.8*sc}"/>`;
+  }
+
+  // Seated person
+  function drawSeatedPerson(cx, cy, sc = 1) {
+    return `
+    <circle cx="${cx}" cy="${cy}" r="${9*sc}" fill="${c.sky}" stroke="${ink}" stroke-width="${1.2*sc}"/>
+    <path d="M${cx},${cy+9*sc} L${cx-12*sc},${cy+35*sc} L${cx+12*sc},${cy+35*sc} Z" fill="${c.cloth}" fill-opacity="0.6" stroke="${ink}" stroke-width="${1*sc}"/>
+    <line x1="${cx-12*sc}" y1="${cy+35*sc}" x2="${cx-8*sc}" y2="${cy+50*sc}" stroke="${ink}" stroke-width="${1*sc}"/>
+    <line x1="${cx+12*sc}" y1="${cy+35*sc}" x2="${cx+8*sc}" y2="${cy+50*sc}" stroke="${ink}" stroke-width="${1*sc}"/>`;
+  }
+
+  // Check for specific card compositions
+  if (tags.includes('person') && !tags.includes('crowd')) {
+    s += drawPerson(px, py, 0.9);
+  }
+  if (tags.includes('crowd')) {
+    s += drawSmallPerson(50, H*0.35, 0.5);
+    s += drawSmallPerson(100, H*0.32, 0.55);
+    s += drawSmallPerson(150, H*0.35, 0.5);
+  }
+  if (tags.includes('horse')) {
+    // Horse body
+    s += `<ellipse cx="${W*0.65}" cy="${H*0.65}" rx="28" ry="14" fill="#8b6914" fill-opacity="0.4" stroke="${ink}" stroke-width="1"/>
+    <path d="M${W*0.78},${H*0.65} L${W*0.85},${H*0.55} L${W*0.83},${H*0.48}" fill="none" stroke="${ink}" stroke-width="1" stroke-linecap="round"/>
+    <line x1="${W*0.55}" y1="${H*0.65}" x2="${W*0.53}" y2="${H*0.78}" stroke="${ink}" stroke-width="1"/>
+    <line x1="${W*0.62}" y1="${H*0.65}" x2="${W*0.60}" y2="${H*0.78}" stroke="${ink}" stroke-width="1"/>
+    <line x1="${W*0.70}" y1="${H*0.65}" x2="${W*0.72}" y2="${H*0.78}" stroke="${ink}" stroke-width="1"/>
+    <line x1="${W*0.76}" y1="${H*0.65}" x2="${W*0.78}" y2="${H*0.78}" stroke="${ink}" stroke-width="1"/>`;
+  }
+  if (tags.includes('animal') && !tags.includes('horse')) {
+    s += `<ellipse cx="${W*0.7}" cy="${H*0.7}" rx="18" ry="11" fill="#a0845a" fill-opacity="0.3" stroke="${ink}" stroke-width="1"/>
+    <circle cx="${W*0.79}" cy="${H*0.67}" r="5" fill="#a0845a" fill-opacity="0.3" stroke="${ink}" stroke-width="1"/>
+    <circle cx="${W*0.81}" cy="${H*0.65}" r="1" fill="${ink}"/>`;
+  }
+  if (tags.includes('sword')) {
+    const sx = 35;
+    s += `<line x1="${sx}" y1="${H*0.15}" x2="${sx}" y2="${H*0.55}" stroke="${ink}" stroke-width="2" stroke-linecap="round"/>
+    <line x1="${sx-10}" y1="${H*0.22}" x2="${sx+10}" y2="${H*0.22}" stroke="${ink}" stroke-width="1.5"/>
+    <line x1="${sx}" y1="${H*0.15}" x2="${sx-2}" y2="${H*0.12}" stroke="${ink}" stroke-width="1"/>`;
+  }
+  if (tags.includes('cup')) {
+    const cy = H * 0.6;
+    s += `<path d="M${W*0.7},${cy} Q${W*0.75},${cy+22} ${W*0.8},${cy}" fill="#2a6496" fill-opacity="0.3" stroke="${ink}" stroke-width="1.2"/>
+    <path d="M${W*0.72},${cy+2} Q${W*0.75},${cy+6} ${W*0.78},${cy+2}" fill="none" stroke="${ink}" stroke-width="0.8"/>
+    <line x1="${W*0.7}" y1="${cy}" x2="${W*0.8}" y2="${cy}" stroke="${ink}" stroke-width="0.8"/>`;
+  }
+  if (tags.includes('wand')) {
+    const wx = W * 0.25;
+    s += `<line x1="${wx}" y1="${H*0.15}" x2="${wx}" y2="${H*0.6}" stroke="#8b4513" stroke-width="3" stroke-linecap="round"/>
+    <ellipse cx="${wx}" cy="${H*0.13}" rx="5" ry="3" fill="#cc5500" fill-opacity="0.4" stroke="${ink}" stroke-width="0.8"/>`;
+  }
+  if (tags.includes('coin')) {
+    s += `<circle cx="${W*0.8}" cy="${H*0.5}" r="12" fill="#c9a227" fill-opacity="0.3" stroke="${ink}" stroke-width="1.5"/>
+    <path d="M${W*0.8},${H*0.5-5} L${W*0.8+3},${H*0.5} L${W*0.8},${H*0.5+5} L${W*0.8-3},${H*0.5} Z" fill="none" stroke="${ink}" stroke-width="0.8"/>`;
+  }
+  if (tags.includes('water')) {
+    s += `<path d="M0,${H*0.85} Q${W*0.15},${H*0.8} ${W*0.3},${H*0.85} Q${W*0.45},${H*0.9} ${W*0.6},${H*0.85} Q${W*0.75},${H*0.8} ${W*0.9},${H*0.85} Q${W},${H*0.88} ${W},${H*0.85} L${W},${H} L0,${H}" fill="#2a6496" fill-opacity="0.15" stroke="${ink}" stroke-width="0.5" opacity="0.5"/>
+    <path d="M0,${H*0.88} Q${W*0.2},${H*0.85} ${W*0.4},${H*0.88} Q${W*0.6},${H*0.91} ${W*0.8},${H*0.88} Q${W},${H*0.85} ${W},${H*0.88}" fill="none" stroke="#2a6496" stroke-width="0.5" opacity="0.4"/>`;
+  }
+  if (tags.includes('lightning')) {
+    s += `<polyline points="${W*0.5},${H*0.05} ${W*0.42},${H*0.2} ${W*0.55},${H*0.22} ${W*0.4},${H*0.45}" fill="none" stroke="#f1c40f" stroke-width="2" stroke-linecap="round"/>
+    <circle cx="${W*0.5}" cy="${H*0.03}" r="3" fill="#f1c40f" fill-opacity="0.5"/>`;
+  }
+  if (tags.includes('tower')) {
+    s += `<rect x="${W*0.38}" y="${H*0.2}" width="${W*0.24}" height="${H*0.5}" fill="#b8860b" fill-opacity="0.3" stroke="${ink}" stroke-width="1.5"/>
+    <rect x="${W*0.44}" y="${H*0.12}" width="${W*0.12}" height="${H*0.1}" fill="#b8860b" fill-opacity="0.3" stroke="${ink}" stroke-width="1"/>
+    <rect x="${W*0.42}" y="${H*0.35}" width="${W*0.06}" height="${W*0.06}" fill="${c.sky}" stroke="${ink}" stroke-width="0.8"/>
+    <rect x="${W*0.52}" y="${H*0.35}" width="${W*0.06}" height="${W*0.06}" fill="${c.sky}" stroke="${ink}" stroke-width="0.8"/>`;
+  }
+  if (tags.includes('moon')) {
+    s += `<circle cx="${W*0.25}" cy="${H*0.15}" r="16" fill="#c0c0c0" fill-opacity="0.3" stroke="${ink}" stroke-width="1"/>
+    <circle cx="${W*0.28}" cy="${H*0.14}" r="13" fill="${c.sky}" stroke="none"/>`;
+  }
+  if (tags.includes('angel')) {
+    s += `<path d="M${W*0.5},${H*0.02} L${W*0.38},${H*0.12} L${W*0.5},${H*0.08} L${W*0.62},${H*0.12} Z" fill="#e8d5b0" fill-opacity="0.4" stroke="${ink}" stroke-width="0.8"/>
+    <circle cx="${W*0.5}" cy="${H*0.14}" r="4" fill="${c.sky}" stroke="${ink}" stroke-width="0.8"/>`;
+  }
+  if (tags.includes('tree')) {
+    s += `<line x1="${W*0.85}" y1="${H*0.75}" x2="${W*0.85}" y2="${H*0.45}" stroke="#5a3e1b" stroke-width="2.5" stroke-linecap="round"/>
+    <ellipse cx="${W*0.85}" cy="${H*0.38}" rx="16" ry="18" fill="#5a8f3c" fill-opacity="0.25" stroke="#5a3e1b" stroke-width="1"/>`;
+  }
+  if (tags.includes('crown')) {
+    s += `<path d="M${W*0.38},${H*0.08} L${W*0.42},${H*0.02} L${W*0.46},${H*0.06} L${W*0.5},${H*0.01} L${W*0.54},${H*0.06} L${W*0.58},${H*0.02} L${W*0.62},${H*0.08}" fill="#c9a227" fill-opacity="0.4" stroke="${ink}" stroke-width="1"/>`;
+  }
+
+  // Border decoration — PCS style corner flourishes
+  s += `<rect x="3" y="3" width="${W-6}" height="${H-6}" fill="none" stroke="${ink}" stroke-width="0.5" opacity="0.3" rx="1"/>`;
+  // Title line at bottom (like PCS cards)
+  const nameShort = card.name.length > 18 ? card.name.substring(0, 16) + '...' : card.name;
+  s += `<line x1="15" y1="${H-25}" x2="${W-15}" y2="${H-25}" stroke="${ink}" stroke-width="0.5" opacity="0.3"/>`;
+  s += `<text x="${W/2}" y="${H-10}" text-anchor="middle" font-family="Georgia,serif" font-size="10" fill="${ink}" opacity="0.5" font-style="italic">${nameShort}</text>`;
+
+  return `<svg viewBox="0 0 ${W} ${H}" xmlns="http://www.w3.org/2000/svg">${s}</svg>`;
 }
 
 function renderRWS() {
